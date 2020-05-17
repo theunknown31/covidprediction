@@ -2,6 +2,9 @@
   font-weight: 900;
   font-size: 2.0em;
 }
+.parallax-container {
+  height: 1600;
+}
 #mychart hover{
   display:block;
   z-index: 1;
