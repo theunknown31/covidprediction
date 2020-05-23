@@ -184,7 +184,7 @@ request.onload = function() {
 }
 if(obj["in"]==null||obj["in"]==undefined)
 {
-    for(int i=2000;i<3000;i=i+200)
+    for(var i=2000;i<3000;i=i+200)
         obj["tt"][i]+=i;
 obj["in"]=obj["tt"];
 console.log(india)
