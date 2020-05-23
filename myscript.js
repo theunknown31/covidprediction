@@ -184,7 +184,7 @@ request.onload = function() {
 }
 if(obj["in"]==null||obj["in"]==undefined)
 {
-obj["in"]=india;
+obj["in"]=obj["tt"];
 console.log(india)
 change({
 "srcElement":{
