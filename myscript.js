@@ -184,7 +184,11 @@ request.onload = function() {
 }
 if(obj["in"]==null||obj["in"]==undefined)
 {
-obj["in"]=[sum(x) for x in zip(obj["tt"],obj["un"])];
+obj["in"][0]=obj["un"][0]+obj["un"][0];
+obj["in"][1]=obj["un"][1]+obj["un"][1];
+obj["in"][2]=obj["un"][2]+obj["un"][2];
+    obj["in"][3]=obj["un"][3]+obj["un"][3];
+    obj["in"][4]=obj["un"][4]+obj["un"][4];
 console.log(india)
 change({
 "srcElement":{
