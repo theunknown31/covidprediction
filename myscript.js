@@ -1,4 +1,3 @@
-from operator import add
 $(document).ready(function(){
     $('.parallax').parallax();
 $('.sidenav').sidenav();
@@ -185,7 +184,7 @@ request.onload = function() {
 }
 if(obj["in"]==null||obj["in"]==undefined)
 {
-obj["in"]=list(map(add,obj["tt"],obj["un"]));
+obj["in"]=[sum(x) for x in zip(obj["tt"],obj["un"])];
 console.log(india)
 change({
 "srcElement":{
