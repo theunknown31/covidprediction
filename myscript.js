@@ -17,6 +17,8 @@ var current1;
 var current;
 function change(hh)
 {
+ 
+
 
   current1=hh.srcElement.id;
   current=current1.substr(2);
@@ -182,7 +184,11 @@ request.onload = function() {
 }
 if(obj["in"]==null||obj["in"]==undefined)
 {
-obj["in"]=india;
+obj["in"]=obj["tt"];    
+// obj["in"][0]+=obj["un"][0];
+// obj["in"][1]+=obj["un"][1];
+// obj["in"][2]+=obj["un"][2];
+//     obj["in"][3]+=obj["un"][3];
 console.log(india)
 change({
 "srcElement":{
@@ -190,9 +196,29 @@ change({
 }
 })
 }
+obj = JSON.parse(data);
+infbysex=[obj["male_inf"],obj["female_inf"]]
+
+ deathbysex=[obj["dead_m"],obj["dead_f"]]
+  deathbyage=[obj["dead_18"], obj["dead_30"],obj["dead_45"],obj["dead_60"],obj["dead_60plus"]]
+   infbyage=[obj["inf_18"],obj["inf_30"], obj["inf_45"],obj["inf_60"],obj["inf_60plus"]]
+ overall=[obj["ov_dead"],obj["ov_rec"],obj["ov_uncon"],]
+ recoverybysex=[obj["re_m"],obj["re_f"]]
+ recoverybyage=[ obj["re_18"],obj["re_30"],obj["re_45"],obj["re_60"],obj["re_60plus"]]
+referesh();
+console.log(overall)
+ 
 
 }
+var infbysex=[]
 
+var infbyage=[]
+var  deathbysex=[]
+var deathbyage=[]
+var overall=[]
+var recoverybysex=[]
+var recoverybyage=[]
+referesh()
 // Send request
 request.send()
 
@@ -240,4 +266,146 @@ const sendMail = form => {
       })
       .catch((err) => console.log(err))
   }
+}
+function referesh(){
+new Chart(document.getElementById("myChart1"), {
+  type: 'pie',
+  data:  {
+    labels: [
+        "Male",
+        "Female",
+    ],
+    datasets: [
+        {
+            data:infbysex,
+            backgroundColor: [
+                "#FF6384",
+                "#63FF84",
+            ]
+        }]
+}
+});
+new Chart(document.getElementById("myChart2"), {
+  type: 'pie',
+  data:   {
+    labels: [
+        "Male",
+        "Female",
+    ],
+    datasets: [
+        {
+            data: deathbysex,
+            backgroundColor: [
+                "#FF6384",
+                "#63FF84",
+            ]
+        }]
+}
+});
+new Chart(document.getElementById("myChart3"), {
+  type: 'pie',
+  data:  {
+    labels: [
+        "Male",
+        "Female",
+    ],
+    datasets: [
+        {
+            data: recoverybysex,
+            backgroundColor: [
+                "#FF6384",
+                "#63FF84",
+            ]
+        }]
+}
+});
+new Chart(document.getElementById("myChart4"), {
+  type: 'pie',
+  data: {
+    labels: [
+        "<18",
+        "18-25",
+        "25-40",
+        "40-60",
+        "60+"
+    ],
+    datasets: [
+        {
+            data: infbyage,
+            backgroundColor: [
+                "#FF6384",
+                "#63FF84",
+                "#84FF63",
+                "#8463FF",
+                "#6384FF"
+            ]
+        }]
+}
+});
+new Chart(document.getElementById("myChart5"), {
+  type: 'pie',
+  data: {
+    labels: [
+      "<18",
+      "18-25",
+      "25-40",
+      "40-60",
+      "60+"
+  ],
+    datasets: [
+        {
+            data:  deathbyage,
+            backgroundColor: [
+                "#FF6384",
+                "#63FF84",
+                "#84FF63",
+                "#8463FF",
+                "#6384FF"
+            ]
+        }]
+}
+});
+new Chart(document.getElementById("myChart6"), {
+  type: 'pie',
+  data: {
+    labels: [
+      "<18",
+      "18-25",
+      "25-40",
+      "40-60",
+      "60+"
+  ],
+    datasets: [
+        {
+            data: recoverybyage,
+            backgroundColor: [
+                "#FF6384",
+                "#63FF84",
+                "#84FF63",
+                "#8463FF",
+                "#6384FF"
+            ]
+        }]
+}
+});
+new Chart(document.getElementById("bar-chart"), {
+  type: 'bar',
+  data: {
+    labels: ["Death", "Recovery", "Currently Hospitalised"],
+    datasets: [
+      {
+        labels: "Covid Cases",
+        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
+        data: overall
+      }
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: 'Overall Death and Recovery Rate'
+    }
+    ,legend:false
+  }
+});
 }
